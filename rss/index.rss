@@ -1,0 +1,85 @@
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>@sting8k</title><description>@sting8k</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Tue, 23 Feb 2016 17:39:23 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>[CTF] Write-up Internetwache CTF 2016 Web50,70,80</title><description>&lt;h3 id="web50"&gt;Web50&lt;/h3&gt;
+
+&lt;p&gt;Bài này cho một đoạn code như sau:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-javascript"&gt;&amp;lt;?php  
+$admin_user = "pr0_adm1n";
+$admin_pw = clean_hash("0e408306536730731920197920342119");
+
+function clean_hash($hash) {  
+    return preg_replace("/[^0-9a-f]/","",$hash);
+}
+function myhash($str) {  
+    return clean_hash(md5(md5($str) . "SALT"));
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nhìn qua thì có vẻ đoạn hash trên là kết quả&lt;/p&gt;</description><link>http://localhost:2368/ctf-write-up-internetwache-ctf-2016-web50-70-80/</link><guid isPermaLink="false">01d3072c-1be3-4a1d-a275-4c0f96b7f82d</guid><dc:creator>Do Anh</dc:creator><pubDate>Tue, 23 Feb 2016 17:38:00 GMT</pubDate><content:encoded>&lt;h3 id="web50"&gt;Web50&lt;/h3&gt;
+
+&lt;p&gt;Bài này cho một đoạn code như sau:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-javascript"&gt;&amp;lt;?php  
+$admin_user = "pr0_adm1n";
+$admin_pw = clean_hash("0e408306536730731920197920342119");
+
+function clean_hash($hash) {  
+    return preg_replace("/[^0-9a-f]/","",$hash);
+}
+function myhash($str) {  
+    return clean_hash(md5(md5($str) . "SALT"));
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Nhìn qua thì có vẻ đoạn hash trên là kết quả của 2 lần md5 kèm với một chuỗi "SALT". &lt;/p&gt;
+
+&lt;p&gt;Ầy, nhưng để ý đoạn hash khá lạ. Bắt đầu bằng &lt;code&gt;0e&lt;/code&gt; và theo sau đấy chỉ toàn là số. Có khi nào tương tự như kiểu chuỗi dạng hex &lt;code&gt;0x&lt;/code&gt; hoặc binary &lt;code&gt;0b&lt;/code&gt; trong sql? Sau khi google một lúc thì mình đã có một số thông tin thú vị từ cái chuỗi &lt;code&gt;0e&lt;/code&gt; này &lt;a href="http://stackoverflow.com/questions/22140204/why-md5240610708-is-equal-to-md5qnkcdzo"&gt;&lt;strong&gt;Why md5('240610708') is equal to md5('QNKCDZO')?&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Như vậy bây giờ cần bruteforce ra một hash từ công thức &lt;code&gt;md5(md5($password)."SALT")&lt;/code&gt; mà có ký tự đầu là &lt;code&gt;0e&lt;/code&gt; hoặc &lt;code&gt;00e&lt;/code&gt; , ... và theo sau toàn là số.&lt;/p&gt;
+
+&lt;p&gt;Code python:  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-javascript"&gt;import hashlib
+
+datax = raw_input("Input: ")  
+i = 0  
+while True:  
+    alpha = hashlib.md5()
+    alpha.update(str(i))
+    beta = hashlib.md5()
+    beta.update(str(alpha.hexdigest())+"SALT")
+    rs = beta.hexdigest()
+    if rs[:2]=="0e" or rs[:3] == "00e":
+        if rs[2:31].isdigit() or rs[3:31].isdigit():
+            print "[+] FOUND:"+str(i) 
+            raw_input("Press c to continue searching")
+    if i % 1000 == 0:
+        print "[+] Searching: "+str(i)+" | "+rs
+    i = i + 1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Kết quả in ra chính là password ta cần: &lt;code&gt;62778807&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id="web70"&gt;Web70&lt;/h3&gt;
+
+&lt;p&gt;Bài này dùng lỗi sql truncation để tấn công. &lt;br&gt;
+Register một account với username &lt;code&gt;admin                     x&lt;/code&gt;, password bất kỳ. Sau đó ta sẽ login được thành công vào account &lt;code&gt;admin&lt;/code&gt; vì đoạn phía sau của username vượt quá số ký tự trong database.&lt;/p&gt;
+
+&lt;h3 id="web80"&gt;Web80&lt;/h3&gt;
+
+&lt;p&gt;Một site chỉ có code HTML &gt; &lt;a href="https://github.com/internetwache/Internetwache-CTF-2016/blob/master/tasks/web80/code/index.html"&gt;Source&lt;/a&gt; &lt;br&gt;
+Để ý có một dòng là:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;It's 2016 now and I need to somehow keep track of my changes to this document as it grows and grows. All people are talking about a tool called '&lt;strong&gt;Git&lt;/strong&gt;'. I think I might give this a try.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Thử truy cập &lt;code&gt;https://0ldsk00lblog.ctf.internetwache.org/.git/HEAD&lt;/code&gt; thành công =&gt; Giờ phải bê thư mục .git này về để kiểm tra xem có gì&lt;/p&gt;
+
+&lt;p&gt;Mình dùng một tool có sẵn, code bằng perl &gt; &lt;a href="https://github.com/kost/dvcs-ripper/blob/master/rip-git.pl"&gt;rip-git.pl&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Chạy tool và string &lt;code&gt;flag&lt;/code&gt; trong thư mục .git này  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-javascript"&gt;$ PERL_LWP_SSL_VERIFY_HOSTNAME=0 ./rip-git.pl -v -u https://0ldsk00lblog.ctf.internetwache.org/.git
+$ grep -r "flag" ./
+flag IW{G1T_1S_4W3SOME}  
+&lt;/code&gt;&lt;/pre&gt;</content:encoded></item></channel></rss>
