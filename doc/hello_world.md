@@ -4,3 +4,8 @@
     Hello world !
 ---
 
+```
+    <html>
+        <title></title>
+    </html>
+```
