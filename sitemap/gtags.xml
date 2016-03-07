@@ -2,4 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url> <loc>http://sting8k.github.io/tag/ctf</loc> <changefreq>daily</changefreq> <priority>0.3</priority> </url>
 <url> <loc>http://sting8k.github.io/tag/web</loc> <changefreq>daily</changefreq> <priority>0.3</priority> </url>
+<url> <loc>http://sting8k.github.io/tag/web</loc> <changefreq>daily</changefreq> <priority>0.3</priority> </url>
+<url> <loc>http://sting8k.github.io/tag/ctf</loc> <changefreq>daily</changefreq> <priority>0.3</priority> </url>
+<url> <loc>http://sting8k.github.io/tag/learn</loc> <changefreq>daily</changefreq> <priority>0.3</priority> </url>
+<url> <loc>http://sting8k.github.io/tag/beginner</loc> <changefreq>daily</changefreq> <priority>0.3</priority> </url>
+<url> <loc>http://sting8k.github.io/tag/sql</loc> <changefreq>daily</changefreq> <priority>0.3</priority> </url>
+<url> <loc>http://sting8k.github.io/tag/xss</loc> <changefreq>daily</changefreq> <priority>0.3</priority> </url>
+<url> <loc>http://sting8k.github.io/tag/lfi</loc> <changefreq>daily</changefreq> <priority>0.3</priority> </url>
+<url> <loc>http://sting8k.github.io/tag/rfi</loc> <changefreq>daily</changefreq> <priority>0.3</priority> </url>
 </urlset>
