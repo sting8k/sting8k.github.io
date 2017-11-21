@@ -1,4 +1,4 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>@sting8k</title><description>@sting8k</description><link>http://localhost:80/</link><generator>Ghost 0.7</generator><lastBuildDate>Tue, 21 Nov 2017 16:29:26 GMT</lastBuildDate><atom:link href="http://localhost:80/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>[SVATTT 2017] Writeup Web daemon: The Last Bullet</title><description>&lt;p&gt;Challenge:  &lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>@sting8k</title><description>@sting8k</description><link>http://sting8k.github.io/</link><generator>Ghost 0.7</generator><lastBuildDate>Tue, 21 Nov 2017 16:36:00 GMT</lastBuildDate><atom:link href="http://sting8k.github.io/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>[SVATTT 2017] Writeup Web daemon: The Last Bullet</title><description>&lt;p&gt;Challenge:  &lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;&lt;a href="http://119.81.181.252/8d0943ff26c8d0cfe74924b9f8b87298/"&gt;http://119.81.181.252/8d0943ff26c8d0cfe74924b9f8b87298/&lt;/a&gt;&lt;/p&gt;
@@ -17,7 +17,7 @@ Disallow: /backkup-1337/
 &lt;/ul&gt;
 
 &lt;pre&gt;&lt;code class="language-php"&gt;...
-$access_key=mysql_real_escape_string($_GET['access_&lt;/code&gt;&lt;/pre&gt;</description><link>http://localhost:80/svattt-2017-writeup-web-daemon-the-last-bullet/</link><guid isPermaLink="false">7191f76f-5686-4383-8531-6c9a319a83fa</guid><category>CTF</category><category>svattt</category><category>web</category><dc:creator>Do Anh</dc:creator><pubDate>Tue, 21 Nov 2017 14:02:00 GMT</pubDate><media:content url="http://localhost:80/content/images/2017/11/wallhaven-494982-1.png" medium="image"/><content:encoded>&lt;img src="http://localhost:80/content/images/2017/11/wallhaven-494982-1.png" alt="[SVATTT 2017] Writeup Web daemon: The Last Bullet"&gt;&lt;p&gt;Challenge:  &lt;/p&gt;
+$access_key=mysql_real_escape_string($_GET['access_&lt;/code&gt;&lt;/pre&gt;</description><link>http://sting8k.github.io/svattt-2017-writeup-web-daemon-the-last-bullet/</link><guid isPermaLink="false">7191f76f-5686-4383-8531-6c9a319a83fa</guid><category>CTF</category><category>svattt</category><category>web</category><dc:creator>Do Anh</dc:creator><pubDate>Tue, 21 Nov 2017 14:02:00 GMT</pubDate><media:content url="http://sting8k.github.io/content/images/2017/11/wallhaven-494982-1.png" medium="image"/><content:encoded>&lt;img src="http://sting8k.github.io/content/images/2017/11/wallhaven-494982-1.png" alt="[SVATTT 2017] Writeup Web daemon: The Last Bullet"&gt;&lt;p&gt;Challenge:  &lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;&lt;a href="http://119.81.181.252/8d0943ff26c8d0cfe74924b9f8b87298/"&gt;http://119.81.181.252/8d0943ff26c8d0cfe74924b9f8b87298/&lt;/a&gt;&lt;/p&gt;
@@ -64,7 +64,7 @@ include_once("delete.php");
 &lt;p&gt;Nhưng ... &lt;br&gt;
 Ngay từ đầu khi đọc source, mình nhận thấy khá bất thường khi tác giả luôn đặt hàm connect, close db ở từng file, cộng thêm việc vừa insert vừa delete nhìn vội vler 😂 . &lt;/p&gt;
 
-&lt;p&gt;&lt;img src="http://localhost:80/content/images/2017/11/Screen-Shot-2017-11-21-at-9-36-03-PM.png" alt="[SVATTT 2017] Writeup Web daemon: The Last Bullet"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://sting8k.github.io/content/images/2017/11/Screen-Shot-2017-11-21-at-9-36-03-PM.png" alt="[SVATTT 2017] Writeup Web daemon: The Last Bullet"&gt;&lt;/p&gt;
 
 &lt;p&gt;Ya, nó có mùi &lt;strong&gt;Race condition&lt;/strong&gt;.&lt;/p&gt;
 
@@ -90,7 +90,7 @@ except:
     print "Error: unable to start thread"
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src="http://localhost:80/content/images/2017/11/Screen-Shot-2017-11-21-at-10-02-49-PM.png" alt="[SVATTT 2017] Writeup Web daemon: The Last Bullet"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://sting8k.github.io/content/images/2017/11/Screen-Shot-2017-11-21-at-10-02-49-PM.png" alt="[SVATTT 2017] Writeup Web daemon: The Last Bullet"&gt;&lt;/p&gt;
 
 &lt;p&gt;Insert được rồi, giờ sao?&lt;/p&gt;
 
@@ -143,16 +143,16 @@ echo file_get_contents($bookmark);
 &lt;pre&gt;&lt;code&gt;index.php?path=:xyz@localhost:1337/.//./././../../././././././././././././././/.././././././&amp;amp;insert=1&amp;amp;access_key=xxxxx  
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src="http://localhost:80/content/images/2017/11/Screen-Shot-2017-11-21-at-10-39-36-PM.png" alt="[SVATTT 2017] Writeup Web daemon: The Last Bullet"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://sting8k.github.io/content/images/2017/11/Screen-Shot-2017-11-21-at-10-39-36-PM.png" alt="[SVATTT 2017] Writeup Web daemon: The Last Bullet"&gt;&lt;/p&gt;
 
 &lt;p&gt;Get flag.php  &lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;index.php?path=:wtf@localhost:1337/./././././././././././././././././././././././././flag.php&amp;amp;insert=1&amp;amp;access_key=xxxxx  
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src="http://localhost:80/content/images/2017/11/Screen-Shot-2017-11-21-at-10-41-55-PM.png" alt="[SVATTT 2017] Writeup Web daemon: The Last Bullet"&gt;&lt;/p&gt;</content:encoded></item><item><title>[CTF] Làm thế nào để bắt đầu với CTF mảng Web</title><description>&lt;p&gt;Web là một trong những mảng dễ tiếp cận khi chơi CTF. &lt;strong&gt;Vậy bắt đầu CTF mảng Web như thế nào?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://sting8k.github.io/content/images/2017/11/Screen-Shot-2017-11-21-at-10-41-55-PM.png" alt="[SVATTT 2017] Writeup Web daemon: The Last Bullet"&gt;&lt;/p&gt;</content:encoded></item><item><title>[CTF] Làm thế nào để bắt đầu với CTF mảng Web</title><description>&lt;p&gt;Web là một trong những mảng dễ tiếp cận khi chơi CTF. &lt;strong&gt;Vậy bắt đầu CTF mảng Web như thế nào?&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;Giờ đặt một website trước mặt mình thì không thể cứ thế mà làm. Làm gì? Tìm flag - một chuỗi bí mật do người ra đề giấu ở&lt;/p&gt;</description><link>http://localhost:80/ctf-lam-the-nao-de-bat-dau-voi-ctf-mang-web/</link><guid isPermaLink="false">0deb8673-9a96-475a-9870-e210c2a3d7e1</guid><category>web</category><category>CTF</category><category>learn</category><category>beginner</category><category>sql</category><category>xss</category><category>lfi</category><category>rfi</category><dc:creator>Do Anh</dc:creator><pubDate>Mon, 07 Mar 2016 03:11:04 GMT</pubDate><media:content url="http://localhost:80/content/images/2016/03/1024px-DEF_CON_17_CTF_competition.jpg" medium="image"/><content:encoded>&lt;img src="http://localhost:80/content/images/2016/03/1024px-DEF_CON_17_CTF_competition.jpg" alt="[CTF] Làm thế nào để bắt đầu với CTF mảng Web"&gt;&lt;p&gt;Web là một trong những mảng dễ tiếp cận khi chơi CTF. &lt;strong&gt;Vậy bắt đầu CTF mảng Web như thế nào?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Giờ đặt một website trước mặt mình thì không thể cứ thế mà làm. Làm gì? Tìm flag - một chuỗi bí mật do người ra đề giấu ở&lt;/p&gt;</description><link>http://sting8k.github.io/ctf-lam-the-nao-de-bat-dau-voi-ctf-mang-web/</link><guid isPermaLink="false">0deb8673-9a96-475a-9870-e210c2a3d7e1</guid><category>web</category><category>CTF</category><category>learn</category><category>beginner</category><category>sql</category><category>xss</category><category>lfi</category><category>rfi</category><dc:creator>Do Anh</dc:creator><pubDate>Mon, 07 Mar 2016 03:11:04 GMT</pubDate><media:content url="http://sting8k.github.io/content/images/2016/03/1024px-DEF_CON_17_CTF_competition.jpg" medium="image"/><content:encoded>&lt;img src="http://sting8k.github.io/content/images/2016/03/1024px-DEF_CON_17_CTF_competition.jpg" alt="[CTF] Làm thế nào để bắt đầu với CTF mảng Web"&gt;&lt;p&gt;Web là một trong những mảng dễ tiếp cận khi chơi CTF. &lt;strong&gt;Vậy bắt đầu CTF mảng Web như thế nào?&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;Giờ đặt một website trước mặt mình thì không thể cứ thế mà làm. Làm gì? Tìm flag - một chuỗi bí mật do người ra đề giấu ở đâu đó quanh cái web. Muốn tìm được nó trước hết phải xem đề bài gợi ý cái gì, cho cái gì, trong web có gì, làm sao để khai thác mấy cái đó. Từ đây lại có một vấn đề: &lt;strong&gt;Phải hiểu về web trước đã&lt;/strong&gt;.&lt;/p&gt;
 
@@ -194,7 +194,7 @@ echo file_get_contents($bookmark);
 &lt;li&gt;Tham khảo: &lt;a href="http://aptech.vn/kien-thuc-tin-hoc/tim-hieu-co-ban-ve-http-va-dinh-dang-cua-cac-http-message.html"&gt;Tìm hiểu cơ bản về HTTP và định dạng của các HTTP message&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src="http://localhost:80/content/images/2016/03/Screen-Shot-2016-03-07-at-12-10-19-PM.png" alt="[CTF] Làm thế nào để bắt đầu với CTF mảng Web"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="http://sting8k.github.io/content/images/2016/03/Screen-Shot-2016-03-07-at-12-10-19-PM.png" alt="[CTF] Làm thế nào để bắt đầu với CTF mảng Web"&gt;&lt;/p&gt;
 
 &lt;p&gt;Cuối cùng là việc &lt;strong&gt;thao tác với các headers&lt;/strong&gt;. Trên Firefox mình hay dùng addon &lt;a href="https://addons.mozilla.org/en-US/firefox/addon/live-http-headers-fixed-by-dan"&gt;Live Http Headers&lt;/a&gt; hoặc &lt;a href="https://addons.mozilla.org/en-US/firefox/addon/tamper-data/"&gt;Tamper data&lt;/a&gt;. Nâng cao hơn các bạn hãy tập dùng &lt;a href="https://curl.haxx.se/"&gt;curl&lt;/a&gt;, rất tiện và có api cho nhiều ngôn ngữ lập trình.&lt;/p&gt;
 
@@ -300,7 +300,7 @@ function myhash($str) {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Nhìn qua thì có vẻ đoạn hash trên là kết quả&lt;/p&gt;</description><link>http://localhost:80/ctf-write-up-internetwache-ctf-2016-web50-70-80/</link><guid isPermaLink="false">01d3072c-1be3-4a1d-a275-4c0f96b7f82d</guid><category>CTF</category><category>web</category><dc:creator>Do Anh</dc:creator><pubDate>Tue, 23 Feb 2016 17:38:00 GMT</pubDate><content:encoded>&lt;h3 id="web50"&gt;Web50&lt;/h3&gt;
+&lt;p&gt;Nhìn qua thì có vẻ đoạn hash trên là kết quả&lt;/p&gt;</description><link>http://sting8k.github.io/ctf-write-up-internetwache-ctf-2016-web50-70-80/</link><guid isPermaLink="false">01d3072c-1be3-4a1d-a275-4c0f96b7f82d</guid><category>CTF</category><category>web</category><dc:creator>Do Anh</dc:creator><pubDate>Tue, 23 Feb 2016 17:38:00 GMT</pubDate><content:encoded>&lt;h3 id="web50"&gt;Web50&lt;/h3&gt;
 
 &lt;p&gt;Bài này cho một đoạn code như sau:&lt;/p&gt;
 
