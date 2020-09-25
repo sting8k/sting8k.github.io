@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>The most ??? form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <style>
+        .field-icon {
+            float: right;
+            margin-left: -25px;
+            margin-top: -25px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .submit-btn:disabled {
+            background-color: grey;
+        }
+        
+        label[for="cstring"] {
+            transform: translateY(-24px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- partial:index.partial.html -->
+    <section class="get-in-touch">
+        <h1 class="title">Get in TOUCH</h1>
+        <div class="contact-form row">
+            <div class="form-field col x-50">
+                <input id="webapp" class="input-text js-input" type="text" required>
+                <label class="label" for="webapp">WebApp</label>
+            </div>
+            <div class="form-field col x-50">
+                <input id="email" class="input-text js-input" type="text" required>
+                <label class="label" for="email">Username/Email</label>
+            </div>
+            <div class="form-field col x-100">
+                <input id="key" class="input-text js-input" type="password" required>
+                <label class="label" for="key">Key</label>
+                <span toggle="#key" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+            </div>
+            <div class="form-field col x-100">
+                <input id="cstring" class="input-text js-input" type="password" readonly>
+                <label class="label" for="cstring">Cstring</label>
+                <span toggle="#cstring" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+            </div>
+            <div class="align-center">
+                <span id="noti"> </span>
+            </div>
+            <div class="form-field col x-100 align-center">
+                <input class="submit-btn" type="button" value="GEN" onclick="gen()">
+                <input class="submit-btn" id="CopyToggle" type="button" value="Copy To Clipboard" onclick="copyToClipboard()" disabled>
+            </div>
+
+        </div>
+    </section>
+    <p class="note">Ofcourse. By<a class="link" href="https://sting8k.github.io" target="blank">@sting8k</a>.</p>
+    <!-- partial -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='md5.js'></script>
+    <script src='rc4.js'></script>
+    <script src='base64.js'></script>
+    <script>
+        $('.js-input').keyup(function() {
+            if ($(this).val()) {
+                $(this).addClass('not-empty');
+            } else {
+                $(this).removeClass('not-empty');
+            }
+        });
+
+        $(".toggle-password").click(function() {
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $($(this).attr("toggle"));
+
+            if ((input.attr("type") == "password")) {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
+
+        function process() {
+            var webapp = $("#webapp").val().toUpperCase();
+            var email = $("#email").val().toLowerCase();
+            var key = $("#key").val();
+            if (webapp != "" && email != "" && key != "" && key.length % 2 == 0) {
+                console.log(webapp + email);
+                var md5hex = CryptoJS.enc.Hex.parse($.md5(webapp + email));
+                var keyhex = CryptoJS.enc.Hex.parse(key);
+                console.log("MD5: " + md5hex);
+                var rc4str = CryptoJS.RC4.encrypt(md5hex, keyhex);
+                console.log("RC4: " + rc4str);
+                $('#cstring').val(rc4str);
+            } else {
+                alert("Something have not defined yet!");
+            }
+        }
+
+        function copyToClipboard() {
+            var element = $("#cstring");
+            var $temp = $("<input>");
+            $("body").append($temp);
+            $temp.val($(element).val()).select();
+            document.execCommand("copy");
+            $temp.remove();
+            $("#noti").text("Copied to clipboard!");
+        }
+
+        function gen() {
+            process();
+            $("#CopyToggle").attr("disabled", false);
+            $("#noti").text("Generated!");
+        }
+    </script>
+
+</body>
+
+</html>
