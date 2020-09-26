@@ -127,7 +127,7 @@
 
             $("body").append($temp);
             $temp.val($(element).val()).select();
-            $temp.selectRange(0, 99999);
+            $temp[0].setSelectionRange(0, 99999);
             document.execCommand("copy");
             $temp.remove();
             $("#noti").text("Copied to clipboard!");
