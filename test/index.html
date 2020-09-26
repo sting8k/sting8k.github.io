@@ -66,6 +66,25 @@
     <script src='rc4.js'></script>
     <script src='base64.js'></script>
     <script>
+        $.fn.selectRange = function(start, end) {
+            var e = document.getElementById($(this).attr('id')); // I don't know why... but $(this) don't want to work today :-/
+            if (!e) return;
+            else if (e.setSelectionRange) {
+                e.focus();
+                e.setSelectionRange(start, end);
+            } /* WebKit */
+            else if (e.createTextRange) {
+                var range = e.createTextRange();
+                range.collapse(true);
+                range.moveEnd('character', end);
+                range.moveStart('character', start);
+                range.select();
+            } /* IE */
+            else if (e.selectionStart) {
+                e.selectionStart = start;
+                e.selectionEnd = end;
+            }
+        };
         $('.js-input').keyup(function() {
             if ($(this).val()) {
                 $(this).addClass('not-empty');
@@ -105,8 +124,10 @@
         function copyToClipboard() {
             var element = $("#cstring");
             var $temp = $("<input>");
+
             $("body").append($temp);
             $temp.val($(element).val()).select();
+            $temp.selectRange(0, 99999);
             document.execCommand("copy");
             $temp.remove();
             $("#noti").text("Copied to clipboard!");
