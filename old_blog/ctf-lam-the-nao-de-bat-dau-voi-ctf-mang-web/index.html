@@ -1,0 +1,336 @@
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>[CTF] Làm thế nào để bắt đầu với CTF mảng Web</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="../favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/screen.css?v=f751b36b04">
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic%7COpen+Sans:700,400">
+    <link rel="stylesheet" type="text/css" href="../assets/css/prism.css?v=f751b36b04">  
+
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="origin">
+    
+    <meta property="og:site_name" content="@sting8k">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="[CTF] Làm thế nào để bắt đầu với CTF mảng Web">
+    <meta property="og:description" content="Web là một trong những mảng dễ tiếp cận khi chơi CTF. Vậy bắt đầu CTF mảng Web như thế nào? Giờ đặt một website trước mặt mình thì không thể cứ thế mà làm. Làm gì? Tìm flag - một chuỗi bí mật do người ra đề giấu ở">
+    <meta property="og:url" content="http://sting8k.github.io/ctf-lam-the-nao-de-bat-dau-voi-ctf-mang-web/">
+    <meta property="og:image" content="http://sting8k.github.io/content/images/2016/03/1024px-DEF_CON_17_CTF_competition.jpg">
+    <meta property="article:published_time" content="2016-03-07T03:11:04.542Z">
+    <meta property="article:modified_time" content="2016-03-07T05:13:57.993Z">
+    <meta property="article:tag" content="web">
+    <meta property="article:tag" content="CTF">
+    <meta property="article:tag" content="learn">
+    <meta property="article:tag" content="beginner">
+    <meta property="article:tag" content="sql">
+    <meta property="article:tag" content="xss">
+    <meta property="article:tag" content="lfi">
+    <meta property="article:tag" content="rfi">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="[CTF] Làm thế nào để bắt đầu với CTF mảng Web">
+    <meta name="twitter:description" content="Web là một trong những mảng dễ tiếp cận khi chơi CTF. Vậy bắt đầu CTF mảng Web như thế nào? Giờ đặt một website trước mặt mình thì không thể cứ thế mà làm. Làm gì? Tìm flag - một chuỗi bí mật do người ra đề giấu ở">
+    <meta name="twitter:url" content="http://sting8k.github.io/ctf-lam-the-nao-de-bat-dau-voi-ctf-mang-web/">
+    <meta name="twitter:image:src" content="http://sting8k.github.io/content/images/2016/03/1024px-DEF_CON_17_CTF_competition.jpg">
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "@sting8k",
+    "author": {
+        "@type": "Person",
+        "name": "Do Anh",
+        "image": "//www.gravatar.com/avatar/4beece75b9d4d4c505e67277f10116d0?s=250&d=mm&r=x",
+        "url": "http://sting8k.github.io/author/do/",
+        "sameAs": "https://www.facebook.com/profile.php?id=100001683154788"
+    },
+    "headline": "[CTF] Làm thế nào để bắt đầu với CTF mảng Web",
+    "url": "http://sting8k.github.io/ctf-lam-the-nao-de-bat-dau-voi-ctf-mang-web/",
+    "datePublished": "2016-03-07T03:11:04.542Z",
+    "dateModified": "2016-03-07T05:13:57.993Z",
+    "image": "http://sting8k.github.io/content/images/2016/03/1024px-DEF_CON_17_CTF_competition.jpg",
+    "keywords": "web, CTF, learn, beginner, sql, xss, lfi, rfi",
+    "description": "Web là một trong những mảng dễ tiếp cận khi chơi CTF. Vậy bắt đầu CTF mảng Web như thế nào? Giờ đặt một website trước mặt mình thì không thể cứ thế mà làm. Làm gì? Tìm flag - một chuỗi bí mật do người ra đề giấu ở"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.7">
+    <link rel="alternate" type="application/rss+xml" title="@sting8k" href="../rss/index.html">
+    <style>
+    .main-header{
+    	max-height:350px;
+    }
+</style>
+</head>
+<body class="post-template tag-web tag-ctf tag-learn tag-beginner tag-sql tag-xss tag-lfi tag-rfi nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="index.html#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+            <li class="nav-home" role="presentation"><a href="../">Home</a></li>
+            <li class="nav-facebook" role="presentation"><a href="https://www.facebook.com/profile.php?id=100001683154788">Facebook</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="../rss/index.rss">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        
+
+
+<header class="main-header post-head " style="background-image: url(../content/images/2016/03/1024px-DEF_CON_17_CTF_competition.jpg)">
+    <nav class="main-nav overlay clearfix">
+        
+            <a class="menu-button icon-menu" href="index.html#"><span class="word">Menu</span></a>
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="post tag-web tag-ctf tag-learn tag-beginner tag-sql tag-xss tag-lfi tag-rfi">
+
+        <header class="post-header">
+            <h1 class="post-title">[CTF] Làm thế nào để bắt đầu với CTF mảng Web</h1>
+            <section class="post-meta">
+                <time class="post-date" datetime="2016-03-07">07 March 2016</time>  on <a href="../tag/web/">web</a>, <a href="../tag/ctf/">CTF</a>, <a href="../tag/learn/">learn</a>, <a href="../tag/beginner/">beginner</a>, <a href="../tag/sql/">sql</a>, <a href="../tag/xss/">xss</a>, <a href="../tag/lfi/">lfi</a>, <a href="../tag/rfi/">rfi</a>
+            </section>
+        </header>
+
+        <section class="post-content">
+            <p>Web là một trong những mảng dễ tiếp cận khi chơi CTF. <strong>Vậy bắt đầu CTF mảng Web như thế nào?</strong></p>
+
+<p>Giờ đặt một website trước mặt mình thì không thể cứ thế mà làm. Làm gì? Tìm flag - một chuỗi bí mật do người ra đề giấu ở đâu đó quanh cái web. Muốn tìm được nó trước hết phải xem đề bài gợi ý cái gì, cho cái gì, trong web có gì, làm sao để khai thác mấy cái đó. Từ đây lại có một vấn đề: <strong>Phải hiểu về web trước đã</strong>.</p>
+
+<p><em>Nói thêm một chút là ở bài viết này mình sẽ không đi sâu vào chi tiêt, mình chỉ dừng lại ở việc đặt ra các vấn đề quan trọng mà các bạn cần tìm hiểu</em></p>
+
+<hr>
+
+<h4 id="webhotngthno">Web hoạt động thế nào?</h4>
+
+<p>Chúng ta sẽ cần nắm kiến thức về web qua những vấn đề như thế này:</p>
+
+<ul>
+<li>Cách hoạt động của web từ phía client cho đến phía server sẽ có những gì? </li>
+<li>Client gửi request cho server và nhận lại response như thế nào? Qua đâu? (HTTP, HTTP Header, HTTP Methods)</li>
+<li>Cách client và server lưu trữ thông tin của nhau (qua cơ sở dữ liệu, cookie, session, …).</li>
+<li>Các ngôn ngữ cấu thành 1 trang web hoặc thường được dùng khi xây dựng web. (HTML, CSS, JS, PHP, SQL ...)</li>
+<li>Thông tin whois của 1 trang web (ip, owner,...).</li>
+</ul>
+
+<h4 id="1linquannhttp">1. Liên quan đến HTTP</h4>
+
+<p>Mỗi khi truy cập một website, từ phía client phải gửi <strong>request</strong> lên server qua <strong>giao thức HTTP</strong>, và những request này được thể hiện dưới dạng <strong>HTTP header</strong>. Giống như việc muốn gửi bức thư thì phải có địa chỉ nhận, tên người viết, thông tin về người viết, nội dung dung thư thì có yêu cầu,... Các headers cũng chứa những thông tin tương tự như vậy.</p>
+
+<p>Những headers này có rất nhiều nên các bạn có thể tự google tìm hiểu. <em>Đặc biệt là chú ý về <strong>cookie, user-agent</strong>, là 2 trường hay được dùng trong các bài ctf.</em></p>
+
+<p>Gủi một HTTP request đi cũng có thể gửi được bằng nhiều dạng khác nhau. Các dạng này chính là các <strong>HTTP Methods</strong> hay còn gọi là HTTP Verb. Dạng của nó bao gồm GET, POST, PUT, DELETE, OPTIONS,... Thường dùng nhất là <strong>POST và GET</strong>. Các bạn nên tìm hiểu kỹ điểm giống và khác của 2 methods này. </p>
+
+<p>Một số bài khi dùng POST, GET đều không nhận được gì từ phía server, nhưng khi đổi sang HEAD, PUT, hoặc method khác thì lại ra kết quả. Lý do là ở file .htaccess đã block 2 method đó. Tham khảo:</p>
+
+<ul>
+<li><a href="http://www.tutorialspoint.com/restful/restful_introduction.htm">http://www.tutorialspoint.com/restful/restful_introduction.htm</a></li>
+<li><a href="http://www.htmlgoodies.com/beyond/webmaster/article.php/3899416/What-is-the-htaccess-File-and-What-Can-I-Do-With-It.htm">.htaccess là gì?</a></li>
+<li><a href="http://stackoverflow.com/questions/11584101/restrict-post-request-the-server">.htaccess Restrict method POST GET</a></li>
+</ul>
+
+<p>Nói tiếp đến <strong>response</strong>. Hẳn các bạn đã không ít lần gặp những thông báo kiểu <code>404 Not Found</code> hoặc <code>302 Forbidden</code> khi truy cập một url nào đó. Đó là vì sau một request được gửi đến server, ta sẽ nhận được response. Trong response, một cái luôn luôn có là <strong>HTTP Status Code. Mỗi đầu số 1xx 2xx 3xx 4xx 5xx có một ý nghĩa khác nhau.</strong></p>
+
+<ul>
+<li>Tham khảo: <a href="http://aptech.vn/kien-thuc-tin-hoc/tim-hieu-co-ban-ve-http-va-dinh-dang-cua-cac-http-message.html">Tìm hiểu cơ bản về HTTP và định dạng của các HTTP message</a></li>
+</ul>
+
+<p><img src="../content/images/2016/03/Screen-Shot-2016-03-07-at-12-10-19-PM.png" alt=""></p>
+
+<p>Cuối cùng là việc <strong>thao tác với các headers</strong>. Trên Firefox mình hay dùng addon <a href="https://addons.mozilla.org/en-US/firefox/addon/live-http-headers-fixed-by-dan">Live Http Headers</a> hoặc <a href="https://addons.mozilla.org/en-US/firefox/addon/tamper-data/">Tamper data</a>. Nâng cao hơn các bạn hãy tập dùng <a href="https://curl.haxx.se/">curl</a>, rất tiện và có api cho nhiều ngôn ngữ lập trình.</p>
+
+<ul>
+<li>Tham khảo: <a href="http://curl.haxx.se/docs/httpscripting.html">http://curl.haxx.se/docs/httpscripting.html</a></li>
+</ul>
+
+<h4 id="2linquannccngnnglptrnhweb">2. Liên quan đến các ngôn ngữ lập trình web</h4>
+
+<p>Với nhiều bài CTF chúng ta sẽ phải đọc hiểu code, phân tích hoặc đoán code. Nói chung ta cần trang bị kiến thức về lập trình, hiểu từng ngôn ngữ để làm gì. Ví dụ như html, css thì giới hạn cũng để thể hiện giao diện web, ở html5 "xịn" hơn thì làm được game gì đó; js thì làm được nhiều hơn, hiệu ứng, tính toán …, quan trọng mấy thằng này đều là kiểu ngôn ngữ ở phía client, tức là chạy được luôn ở phía máy mình, và mình xem được code gốc của nó.</p>
+
+<p>Đối với PHP, ASP, JSP,... đây là các ngôn ngữ được biên dịch trên server, và code gốc thì không xem được nhưng có rất nhiều bài CTF chủ động cho người chơi đọc code để phân tích hoặc có lỗi giúp ta có thể đọc code từ đó khai thác.</p>
+
+<p><strong>Túm lại ta cần học HTML, CSS, JS và một ngôn ngữ server nào đó như PHP hoặc JSP (ít nhất ở mức đọc hiểu).</strong></p>
+
+<h4 id="3linquanncookiesession">3. Liên quan đến Cookie, Session</h4>
+
+<ul>
+<li>Nắm được định nghĩa cookie, session</li>
+<li>Nắm được cách thức lưu trữ của cookie, session. </li>
+</ul>
+
+<p>Lưu ý quan trọng là cookie có thể thay đổi được ở phía client. Session thì chỉ đổi được id (tức là làm mới id, hoặc làm rỗng id). Phía server nếu đọc cookie ko phân biệt ip, đặc điểm trình duyệt người dùng,... thì ta có thể dựa vào đó để khai thác. Ví dụ xác thực admin qua cookie (có một trường id=1234; user=guest, giờ nếu sửa thành id=1;user=admin thì sẽ có thể đăng nhập dưới quyền admin).</p>
+
+<ul>
+<li>Một ví dụ rất cơ bản về cookie: <a href="https://www.youtube.com/watch?v=NrC3129Q55c">https://www.youtube.com/watch?v=NrC3129Q55c</a></li>
+</ul>
+
+<p>Giải thích một chút về clip phía trên như sau.</p>
+
+<ul>
+<li>Phía server có một đoạn code kiểu như thế này:</li>
+</ul>
+
+<pre><code class="language-javascript">&lt;?php  
+if(!isset($_COOKIE[‘restricted_login’])){ //check có trường cookie restricted_login chưa?  
+    setcookie(‘restricted_login’,’false’); // nếu chưa thì set với giá trị là False
+} else { // Nếu đã có trường restricted_login
+    if($_COOKIE[‘restricted_login’] == ‘true’){ //nếu giá trị là true thì qua bàn
+    // Qua bàn, + điểm, blah blah ...
+    }
+}
+?&gt;
+</code></pre>
+
+<p>Đoạn code này sẽ kiểm tra xem ở phía client có trường cookie là <code>restricted_login</code> chưa, nếu chưa có thì thêm vào và có giá trị là <code>false</code>. Nếu đã có thì kiểm tra giá trị của <code>restricted_login</code>, giá trị bằng <code>true</code> thì được phép qua bàn.</p>
+
+<p><strong>Trong CTF đối khi có một bài SQL injection qua cookie. Nói chung cookie cũng là dữ liệu từ phía người dùng, tức là mình có thể thay đổi, và truyền các dữ liệu sai trái lên server.</strong></p>
+
+<h4 id="4linquannsqlinjection">4. Liên quan đến SQL Injection</h4>
+
+<ul>
+<li>SQL injection cơ bản</li>
+<li>SQL injection - Blind: Không thể trực tiếp get ra đoạn dữ liệu mình muốn và phải get từng ký tự, hoặc dựa và các câu lệnh điều kiện đúng sai,... </li>
+<li>SQL injection - Error based: Có thể nói là mở rộng của blind, tùy vào dữ liệu đúng hoặc sai mà server trả về kết quả khác nhau.</li>
+<li>SQL injection - Time based: Dùng một câu lệnh SQL chứa lệnh Sleep(), hoặc một hàm nào đó để nghỉ khi gặp điều kiện đúng. Ví dụ IF(điều kiện, điều kiện nếu đúng-&gt; Sleep(10), đk nếu sai -&gt; null) </li>
+</ul>
+
+<p>SQL Injection cơ bản mình học qua course này, có thể ko cần học hết, chỉ cần nắm rõ cách khai thác qua SQL sau đó có thể tự tìm hiểu thêm tùy bài ctf: </p>
+
+<ul>
+<li><a href="http://newdemy.com/courses/sql-injection-online-course-by-hitesh-choudhary">http://newdemy.com/courses/sql-injection-online-course-by-hitesh-choudhary</a></li>
+</ul>
+
+<h4 id="5localremotefileinclusion">5. Local &amp; Remote File Inclusion</h4>
+
+<ul>
+<li>Chi tiết: <a href="http://hakipedia.com/index.php/Local_File_Inclusion">http://hakipedia.com/index.php/Local<em>File</em>Inclusion</a></li>
+<li>Một clip ví dụ: <a href="https://www.youtube.com/watch?v=s3XQ1n5kdeQ">https://www.youtube.com/watch?v=s3XQ1n5kdeQ</a>    </li>
+</ul>
+
+<h4 id="6xss">6. XSS</h4>
+
+<ul>
+<li>Mọi thông tin chi tiết xin truy cập vào link sau: <a href="https://viblo.asia/Thanh/posts/73KbvZeLGmWB">Kĩ thuật tấn công CROSS-SITE SCRIPTING</a></li>
+</ul>
+
+<h4 id="7luyntp">7. Luyện tập</h4>
+
+<p>Đọc qua tất cả những thông tin phía trên thì đúng là có phần hơi quá tải. Lúc đầu mới chơi CTF mình cũng không có nhiều kiến thức đến vậy. Bài viết này mình muốn là một nơi tổng hợp tương đối các kiến thức cần thiết để các bạn biết sẽ cần trang bị những gì, tìm vấn đề ở đâu,... Sau cùng dưới đây là những nơi mình đã luyện tập CTF mà thấy rất hiệu quả</p>
+
+<ul>
+<li><a href="http://hackthis.co.uk">http://hackthis.co.uk</a> - Một site phù hợp cho người mới bắt đầu.</li>
+<li><a href="http://www.root-me.org/en/Challenges/Web-Server/">http://www.root-me.org/en/Challenges/Web-Server/</a> - Một list challenges bao quát rất nhiều vấn đề, gồm cả các bài LFI/ RFI, các loại SQLi, các tài liệu hướng dẫn.</li>
+<li><a href="http://overthewire.org/wargames/natas/">http://overthewire.org/wargames/natas/</a> - Gồm cả các dạng bài về Command injection và PHP Objection Injection</li>
+<li><a href="http://webhacking.kr">http://webhacking.kr</a> - Có khoảng 60 challenges về web từ khó đến dễ. Một số bài hơi mang tính thách đố</li>
+<li><a href="http://ringzer0team.com">http://ringzer0team.com</a></li>
+</ul>
+
+<p>Một lưu ý cuối là các bạn hãy kết hợp việc luyện tập ở các site phái trên và việc tham gia các giải ctf mới ra ở <a href="http://ctftime.org">http://ctftime.org</a> nữa :D. Chúc các bạn vui vẻ!</p>
+        </section>
+        <div id="disqus_thread"></div>
+        <script>
+            /**
+             *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+             *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+             */
+            
+            var disqus_config = function () {
+                this.page.url = 'http://sting8k.github.io/ctf-lam-the-nao-de-bat-dau-voi-ctf-mang-web/';  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = 'ghost-4'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+            
+            (function() {  // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                
+                s.src = '//sting8kgithubio.disqus.com/embed.js';
+                
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        <footer class="post-footer">
+
+
+            <figure class="author-image">
+                <a class="img" href="../author/do/" style="background-image: url(http://www.gravatar.com/avatar/4beece75b9d4d4c505e67277f10116d0?s=250&amp;d=mm&amp;r=x)"><span class="hidden">Do Anh's Picture</span></a>
+            </figure>
+
+            <section class="author">
+                <h4><a href="../author/do/">Do Anh</a></h4>
+
+                    <p>Read <a href="../author/do/">more posts</a> by this author.</p>
+                <div class="author-meta">
+                    
+                    <span class="author-link icon-link"><a href="https://www.facebook.com/profile.php?id=100001683154788">https://www.facebook.com/profile.php?id=100001683154788</a></span>
+                </div>
+            </section>
+
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="https://twitter.com/intent/tweet?text=%5BCTF%5D%20L%C3%A0m%20th%E1%BA%BF%20n%C3%A0o%20%C4%91%E1%BB%83%20b%E1%BA%AFt%20%C4%91%E1%BA%A7u%20v%E1%BB%9Bi%20CTF%20m%E1%BA%A3ng%20Web&amp;url=http://sting8k.github.io/ctf-lam-the-nao-de-bat-dau-voi-ctf-mang-web/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://sting8k.github.io/ctf-lam-the-nao-de-bat-dau-voi-ctf-mang-web/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=http://sting8k.github.io/ctf-lam-the-nao-de-bat-dau-voi-ctf-mang-web/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+
+        </footer>
+
+    </article>
+</main>
+
+<aside class="read-next">
+    <a class="read-next-story " style="background-image: url(../content/images/2017/11/wallhaven-494982-1.png)" href="../svattt-2017-writeup-web-daemon-the-last-bullet/">
+        <section class="post">
+            <h2>[SVATTT 2017] Writeup Web daemon: The Last Bullet</h2>
+            <p>Challenge:     http://119.81.181.252/8d0943ff26c8d0cfe74924b9f8b87298/ Một chút thính lúc vào game: robots.txt User-agent: *   Disallow: /backkup-1337/   Gắp…</p>
+        </section>
+    </a>
+    <a class="read-next-story prev no-cover" href="../ctf-write-up-internetwache-ctf-2016-web50-70-80/">
+        <section class="post">
+            <h2>[CTF] Write-up Internetwache CTF 2016 Web50,70,80</h2>
+            <p>Web50 Bài này cho một đoạn code như sau: &lt;?php   $admin_user = "pr0_adm1n"; $admin_pw = clean_hash(…</p>
+        </section>
+    </a>
+</aside>
+
+
+
+        <footer class="site-footer clearfix">
+            <section class="copyright"><a href="../">@sting8k</a> © 2017</section>
+            <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    
+
+    <script type="text/javascript" src="../assets/js/jquery.fitvids.js?v=f751b36b04"></script>
+    <script type="text/javascript" src="../assets/js/prism.js?v=f751b36b04"></script> 
+    <script type="text/javascript" src="../assets/js/index.js?v=f751b36b04"></script>
+
+</body>

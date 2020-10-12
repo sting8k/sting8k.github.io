@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>beginner on @sting8k</title>
+    <link>https://sting8k.github.io/tags/beginner/</link>
+    <description>Recent content in beginner on @sting8k</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 03 Jul 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://sting8k.github.io/tags/beginner/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[CTF] Làm thế nào để bắt đầu với CTF mảng Web</title>
+      <link>https://sting8k.github.io/ctf-lam-the-nao-de-bat-dau-voi-ctf-mang-web/</link>
+      <pubDate>Sun, 03 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sting8k.github.io/ctf-lam-the-nao-de-bat-dau-voi-ctf-mang-web/</guid>
+      <description>Web là một trong những mảng dễ tiếp cận khi chơi CTF. Vậy bắt đầu CTF mảng Web như thế nào?
+Giờ đặt một website trước mặt mình thì không thể cứ thế mà làm. Làm gì? Tìm flag - một chuỗi bí mật do người ra đề giấu ở đâu đó quanh cái web. Muốn tìm được nó trước hết phải xem đề bài gợi ý cái gì, cho cái gì, trong web có gì, làm sao để khai thác mấy cái đó.</description>
+    </item>
+    
+  </channel>
+</rss>

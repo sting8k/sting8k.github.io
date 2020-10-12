@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CTF on @sting8k</title>
+    <link>https://sting8k.github.io/tags/ctf/</link>
+    <description>Recent content in CTF on @sting8k</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 21 Nov 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://sting8k.github.io/tags/ctf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[SVATTT 2017] Writeup Web daemon: The Last Bullet</title>
+      <link>https://sting8k.github.io/svattt-2017-writeup-web-daemon-the-last-bullet/</link>
+      <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sting8k.github.io/svattt-2017-writeup-web-daemon-the-last-bullet/</guid>
+      <description>Challenge:
+ http://119.81.181.252/8d0943ff26c8d0cfe74924b9f8b87298/
+ Một chút thính lúc vào game: robots.txt
+User-agent: * Disallow: /backkup-1337/  Gắp được ra 3 cái params insert, access_key và path
+ Nếu không set param insert =&amp;gt; Select và hiện kết quả theo access_key  ... $access_key=mysql_real_escape_string($_GET[&amp;#39;access_key&amp;#39;]); $sql = &amp;#34;SELECT url from local_bookmark where access_key=&amp;#39;&amp;#34;.$access_key.&amp;#34;&amp;#39; order by id desc limit 1&amp;#34;; ...  Nếu set param insert =&amp;gt; Insert vào db dữ liệu lấy từ access_key và path, ngay sau đó thì &amp;hellip; delete ?</description>
+    </item>
+    
+    <item>
+      <title>[CTF] Làm thế nào để bắt đầu với CTF mảng Web</title>
+      <link>https://sting8k.github.io/ctf-lam-the-nao-de-bat-dau-voi-ctf-mang-web/</link>
+      <pubDate>Sun, 03 Jul 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sting8k.github.io/ctf-lam-the-nao-de-bat-dau-voi-ctf-mang-web/</guid>
+      <description>Web là một trong những mảng dễ tiếp cận khi chơi CTF. Vậy bắt đầu CTF mảng Web như thế nào?
+Giờ đặt một website trước mặt mình thì không thể cứ thế mà làm. Làm gì? Tìm flag - một chuỗi bí mật do người ra đề giấu ở đâu đó quanh cái web. Muốn tìm được nó trước hết phải xem đề bài gợi ý cái gì, cho cái gì, trong web có gì, làm sao để khai thác mấy cái đó.</description>
+    </item>
+    
+    <item>
+      <title>[CTF] Write Up Internetwache Ctf 2016 Web50 70 80</title>
+      <link>https://sting8k.github.io/ctf-write-up-internetwache-ctf-2016-web50-70-80/</link>
+      <pubDate>Wed, 24 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://sting8k.github.io/ctf-write-up-internetwache-ctf-2016-web50-70-80/</guid>
+      <description>Web50 Bài này cho một đoạn code như sau:
+&amp;lt;?php $admin_user = &amp;#34;pr0_adm1n&amp;#34;; $admin_pw = clean_hash(&amp;#34;0e408306536730731920197920342119&amp;#34;); function clean_hash($hash) { return preg_replace(&amp;#34;/[^0-9a-f]/&amp;#34;,&amp;#34;&amp;#34;,$hash); } function myhash($str) { return clean_hash(md5(md5($str) . &amp;#34;SALT&amp;#34;)); } Nhìn qua thì có vẻ đoạn hash trên là kết quả của 2 lần md5 kèm với một chuỗi &amp;ldquo;SALT&amp;rdquo;.
+Ầy, nhưng để ý đoạn hash khá lạ. Bắt đầu bằng 0e và theo sau đấy chỉ toàn là số. Có khi nào tương tự như kiểu chuỗi dạng hex 0x hoặc binary 0b trong sql?</description>
+    </item>
+    
+  </channel>
+</rss>

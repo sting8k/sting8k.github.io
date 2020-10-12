@@ -1,0 +1,17 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Development on @sting8k</title>
+		<link>https://sting8k.github.io/categories/development/</link>
+		<description>Recent content in Development </description>
+		<generator>Hugo -- gohugo.io</generator>
+		
+  		<language>en-us</language>
+		
+		<managingEditor>Page(/categories/development) (Do Anh)</managingEditor>
+    	
+  		<lastBuildDate>Wed, 24 Feb 2016 00:00:00 +0000</lastBuildDate>
+		
+		<atom:link href="/categories/development/" rel="self" type="application/rss+xml" />
+		
+	</channel>
+</rss>

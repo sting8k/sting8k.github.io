@@ -1,4 +1,1 @@
 User-agent: *
-Sitemap: http://sting8k.github.io/sitemap.xml
-Disallow: /ghost/
-Disallow: /test/

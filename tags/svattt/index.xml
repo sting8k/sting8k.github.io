@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>svattt on @sting8k</title>
+    <link>https://sting8k.github.io/tags/svattt/</link>
+    <description>Recent content in svattt on @sting8k</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 21 Nov 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://sting8k.github.io/tags/svattt/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[SVATTT 2017] Writeup Web daemon: The Last Bullet</title>
+      <link>https://sting8k.github.io/svattt-2017-writeup-web-daemon-the-last-bullet/</link>
+      <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://sting8k.github.io/svattt-2017-writeup-web-daemon-the-last-bullet/</guid>
+      <description>Challenge:
+ http://119.81.181.252/8d0943ff26c8d0cfe74924b9f8b87298/
+ Một chút thính lúc vào game: robots.txt
+User-agent: * Disallow: /backkup-1337/  Gắp được ra 3 cái params insert, access_key và path
+ Nếu không set param insert =&amp;gt; Select và hiện kết quả theo access_key  ... $access_key=mysql_real_escape_string($_GET[&amp;#39;access_key&amp;#39;]); $sql = &amp;#34;SELECT url from local_bookmark where access_key=&amp;#39;&amp;#34;.$access_key.&amp;#34;&amp;#39; order by id desc limit 1&amp;#34;; ...  Nếu set param insert =&amp;gt; Insert vào db dữ liệu lấy từ access_key và path, ngay sau đó thì &amp;hellip; delete ?</description>
+    </item>
+    
+  </channel>
+</rss>
